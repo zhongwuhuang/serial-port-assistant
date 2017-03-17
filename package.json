@@ -1,0 +1,37 @@
+{
+  "name": "electron-serialport",
+  "version": "1.0.1",
+  "description": "A minimal Electron application with node serialport",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "packager": "electron-packager ./ 串口助手 --linux --out ./dist --version 1.4.13 --overwrite",
+    "packageWin": "electron-packager ./ 'Assistant1' --platform=win32 --arch=all --icon=hosts.ico --out=./dist --asar --app-version=2.0.1",
+    "packageLinux": "electron-packager ./ 'Assistant' --platform=linux --arch=x64 --out=./dist --asar --app-version=2.0.1",
+    "packageDarwin": "electron-packager ./ 'Assistant' --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:johnny-five-io/electron-serialport.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-packager": "^8.6.0",
+    "electron-prebuilt": "^1.4.13",
+    "electron-rebuild": "^1.4.0"
+  },
+  "dependencies": {
+    "data-table": "^2.0.0",
+    "serialport": "^4.0.7"
+  }
+}
