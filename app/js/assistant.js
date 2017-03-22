@@ -31,58 +31,11 @@ function sendInfo(){
   }
 }
 
-// var dgram = require('dgram');
-// var serverSocket = dgram.createSocket('udp4');
-// serverSocket.bind(9901);
-//
-// serverSocket.on('message', function(data, rinfo){
-//   console.log(data);
-//   var strReceive = '';
-//   var date = new Date();
-//   var curRecieveTime = utils.toTwo(date.getHours())+':'+utils.toTwo(date.getMinutes())+':'+utils.toTwo(date.getSeconds());
-//   // 将时间字体加粗
-//   var strcurRecieveTime = '['+curRecieveTime+']';
-//   strcurRecieveTime = strcurRecieveTime.bold();
-//   var dataString = data.toString();//data 是一个对象,要转换成字符串
-//   console.log(dataString);
-//
-//   if(oShowTime.checked&&oShowHex.checked==false){//显示时间
-//     strReceive =  dataString;
-//     // 仅第一次执行加时间,防止重复
-//     if(timeSwt){
-//       strReceive = strcurRecieveTime + strReceive;
-//       timeSwt = false;
-//     }
-//     oReceivetext.innerHTML += strReceive;
-//     oReceivetext.scrollTop = oReceivetext.scrollHeight;
-//
-//   }else if(oShowHex.checked&&oShowTime.checked==false){//十六进制接收
-//
-//     // strReceive = utils.stringToHex(dataString);
-//     strReceive = utils.Bytes2Str(data);
-//     oReceivetext.innerHTML += strReceive;
-//     oReceivetext.scrollTop = oReceivetext.scrollHeight;
-//
-//   }else if(oShowHex.checked&&oShowTime.checked){//显示时间,十六进制
-//
-//     strReceive = utils.stringToHex(dataString);
-//     if(timeSwt){
-//       strReceive = strcurRecieveTime + strReceive;
-//       timeSwt = false;
-//     }
-//     oReceivetext.innerHTML += strReceive;
-//     oReceivetext.scrollTop = oReceivetext.scrollHeight;
-//
-//   }else{
-//
-//     strReceive = dataString;
-//     oReceivetext.innerHTML += strReceive;
-//     oReceivetext.scrollTop = oReceivetext.scrollHeight;
-//
-//   }
-// });
-// 接收信息
 var timeSwt = true;
+var strInner1 = '';
+var strInner2 = '';
+var strInner3 = '';
+var strInner4 = '';
 
 function dataReceive(){
   oOpen.addEventListener('click',function(){
@@ -94,7 +47,7 @@ function dataReceive(){
       var findRs = dataString.toUpperCase().indexOf('set error'.toUpperCase());
 
       // 通用发送部分
-      if(findRs==-1&&commanSwt){
+      if(findRs==-1&&commanSwt&&cmd!=''&&msgsrc!=''&&payload!=''){
         oIntroSend.style.backgroundColor = '#29a729';
         oIntroSend.innerHTML = '发送成功';
         setTimeout(function(){
@@ -192,38 +145,51 @@ function dataReceive(){
       if(oShowTime.checked&&oShowHex.checked==false){//显示时间
         // 仅第一次执行加时间,防止重复
         strReceive = dataString;
-        if(timeSwt){
-          strReceive = strcurRecieveTime + strReceive;
-          timeSwt = false;
+        // if(timeSwt){
+        //   strReceive = strcurRecieveTime + strReceive;
+        //   timeSwt = false;
+        // }
+
+        strInner1 += strReceive;
+        if(dataString.length<32){
+          oReceivetext.innerHTML += '\n'+strcurRecieveTime+strInner1;
+          strInner1 = '';
         }
-        // oReceivetext.innerHTML += strReceive+ '<br>';
-        oReceivetext.innerHTML += strReceive;
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
 
       }else if(oShowHex.checked&&oShowTime.checked==false){//十六进制接收
-
         strReceive = utils.stringToHex(dataString);
-        // oReceivetext.innerHTML += strReceive+ '<br>';
-        oReceivetext.innerHTML += strReceive;
+        strInner2 += strReceive;
+        if(dataString.length<32){
+          oReceivetext.innerHTML += '\n'+strInner2;
+          strInner2 = '';
+        }
+        // oReceivetext.innerHTML += strReceive;
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
 
       }else if(oShowHex.checked&&oShowTime.checked){//显示时间,十六进制
 
         strReceive = utils.stringToHex(dataString);
-        if(timeSwt){
-          strReceive = strcurRecieveTime + strReceive;
-          timeSwt = false;
+        // if(timeSwt){
+        //   strReceive = strcurRecieveTime + strReceive;
+        //   timeSwt = false;
+        // }
+        strInner3 += strReceive;
+        if(dataString.length<32){
+          oReceivetext.innerHTML += '\n'+strcurRecieveTime+strInner3;
+          strInner3 = '';
         }
-        // oReceivetext.innerHTML += strReceive+ '<br>';
-        oReceivetext.innerHTML += strReceive;
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
 
       }else{
 
         strReceive = dataString;
-        // console.log(data.length);
-        // oReceivetext.innerHTML += strReceive+ '<br>';
-        oReceivetext.innerHTML += strReceive;
+        strInner4 += strReceive;
+        if(dataString.length<32){
+          oReceivetext.innerHTML += '\n'+strInner4;
+          strInner4 = '';
+        }
+        // oReceivetext.innerHTML += strReceive;
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
 
       }
@@ -232,12 +198,15 @@ function dataReceive(){
 }
 
 // 协议发送
+var cmd = '';
+var msgsrc = '';
+var payload = '';
 function protocolSend(){
   oIntroSend.addEventListener('click',function(){
     commanSwt = true;
-    var cmd = oCmd.value;
-    var msgsrc = oMsgsrc.value;
-    var payload = oPayload.value;
+    cmd = oCmd.value;
+    msgsrc = oMsgsrc.value;
+    payload = oPayload.value;
     var len = payload.length;
     // 未加crc16前的十六进制
     if(len){

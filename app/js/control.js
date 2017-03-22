@@ -170,6 +170,7 @@ function oPen(){
         oStopbits.disabled = true;
         oParity.disabled = true;
         oSend.disabled = false;
+        oReceivetext.style.backgroundColor = '#fff';
         // oClearSend.disabled = false;
         // oClearReceive.disabled = false;
         oPauseReceive.disabled = false;
@@ -250,6 +251,7 @@ function cLose(){
     oStopbits.disabled = false;
     oParity.disabled = false;
     oSend.disabled = true;
+    oReceivetext.style.backgroundColor = '#ebebe4';
     // oClearSend.disabled = true;
     // oClearReceive.disabled = true;
     oPauseReceive.disabled = true;

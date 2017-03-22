@@ -10,6 +10,7 @@ var oStopbits =  document.getElementById('stopbits');
 var stopbitsIndex = oStopbits.selectedIndex;
 var oParity =  document.getElementById('parity');
 var parityIndex = oParity.selectedIndex;
+var oReload =  document.getElementById('reload');
 
 // 控制区
 var oDevId =  document.querySelector('#devId');
@@ -80,10 +81,10 @@ for(var i=0;i<aLi.length;i++){
   aLi[i].onclick = function(){
     for(var i=0;i<aLi.length;i++){
       aLi[i].className = '';//每次点击按钮都清空按钮class
-      aFunwin[i].style.display = 'none';
+      aFunwin[i].style.visibility = 'hidden';
     }
     aLi[this.index].className = 'active';
-    aFunwin[this.index].style.display = 'block';
+    aFunwin[this.index].style.visibility = 'visible';
   }
 }
 
@@ -129,7 +130,7 @@ oSendtext.onkeypress = function(ev){
   if(oSendHex.checked){
     var key = String.fromCharCode(oEvent.keyCode);
     if(!regStr.test(key)){
-      alert('请输入十六进制字符!');
+      // alert('请输入十六进制字符!');
       return false;
     }
   }
@@ -141,7 +142,7 @@ oCmd.onkeypress = function(ev){
   var regStr = /[0-9a-fA-F\n\s]/g;
   var key = String.fromCharCode(oEvent.keyCode);
   if(!regStr.test(key)){
-    alert('请输入十六进制字符!');
+    // alert('请输入十六进制字符!');
     return false;
   }
 }
@@ -151,7 +152,7 @@ oMsgsrc.onkeypress = function(ev){
   var regStr = /[0-9a-fA-F\n\s]/g;
   var key = String.fromCharCode(oEvent.keyCode);
   if(!regStr.test(key)){
-    alert('请输入十六进制字符!');
+    // alert('请输入十六进制字符!');
     return false;
   }
 }
@@ -161,7 +162,7 @@ oLoopTime.onkeypress = function(ev){
   var regStr = /[0-9]/g;
   var key = String.fromCharCode(oEvent.keyCode);
   if(!regStr.test(key)){
-    alert('请输入整数!');
+    // alert('请输入整数!');
     return false;
   }
 }
@@ -171,7 +172,7 @@ oCalibration.onkeypress = function(ev){
   var regStr = /[0-9]/g;
   var key = String.fromCharCode(oEvent.keyCode);
   if(!regStr.test(key)){
-    alert('请输入整数!');
+    // alert('请输入整数!');
     return false;
   }
 }

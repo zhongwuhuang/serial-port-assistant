@@ -13,11 +13,10 @@
     <div class="wrap">
       <div class="setting">
         <span>
-          <label>端口&nbsp;</label>
+          <label alt="dianji" id="reload">端口&nbsp;</label>
           <select class="dataselect" id="portname" name="">
-            <!-- <option>------</option> -->
-            <option>/dev/ttyUSB0</option>
-            <option>/dev/ttyUSB</option>
+            <option>---端口名---</option>
+            <!-- <option>/dev/ttyUSB0</option> -->
           </select>
         </span>
 
@@ -117,15 +116,13 @@
           </ul>
         </div>
         <div class="show-window">
-          <div style="display:block;" id="portWin" class="fun-win">
+          <div style="visibility:visible;" id="portWin" class="fun-win">
             <div class="assistant">
               <div class="receive">
                 <div class="receiveIpu">
                   <p>接收窗口</p>
                   <textarea disabled id="textReceive" rows="8" cols="40"></textarea>
                   <textarea disabled id="curtextReceive" style="visibility:hidden;" rows="8" cols="40"></textarea>
-                  <!-- <span id="textReceive"></span>
-                  <span id="curtextReceive" style="visibility:hidden;"></span> -->
                 </div>
                 <div class="ceceiveSet">
                   <div class="chkBg">
@@ -138,7 +135,7 @@
                     <button id="pauseReceive" type="button" name="button" disabled="disabled">暂停接收</button>
                     <button id="startReceive" type="button" name="button" disabled="disabled">开始接收</button>
                   </span>
-                  <button id="clearReceive" type="button" name="button" >清空接收</button>
+                  <button id="clearReceive" type="button" name="button">清空接收</button>
                 </div>
               </div>
 
@@ -155,7 +152,6 @@
                   </div>
                   <button id="clearSend" type="button" name="button" >清空发送</button>
                   <button id="send" type="button" name="button" disabled="disabled">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
-                  <button id="closeTimer" type="button" name="button" style="width:100px;height:40px;position: relative;top: -350px;">开定时器</button>
                 </div>
               </div>
 

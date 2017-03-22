@@ -18,10 +18,6 @@ var serveripSwt = false;
 var portSwt = false;
 var nodeIpNumSwt = false;
 
-// var b = new Buffer(11);
-// b.write("hello");
-// alert(b.length+'~~~'+b)
-
 
 // 定时器
 var timer = null;//定时器
@@ -54,6 +50,10 @@ var databitsTxt = oDatabits.options[databitsIndex].text;
 var stopbitsTxt = oStopbits.options[stopbitsIndex].text;
 var parityTxt = oParity.options[parityIndex].text;
 
+//点击端口刷新页面
+oReload.addEventListener('dblclick', function(){
+  ipcRenderer.send('reload-page');
+});
 oPortName.addEventListener('change',function(){
   portnameTxt = this.value;
 });
@@ -84,21 +84,6 @@ control.cLose();
 /*****************************************控制区**************************************************/
 control.commonSet();
 /*****************************************控制区**************************************************/
-
-
-var oCloseTimer = document.querySelector('#closeTimer');
-var s = true;
-oCloseTimer.onclick = function(){
-  if(s){
-    interval();
-    oCloseTimer.innerHTML = '关定时器';
-    s = false;
-  }else{
-    clearInterval(timer);
-    oCloseTimer.innerHTML = '开定时器';
-    s = true;
-  }
-}
 
 
 /*****************************************信息发送部分**************************************************/

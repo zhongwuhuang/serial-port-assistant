@@ -15,10 +15,6 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     // frame:false,
-    // window下尺寸
-    // width: 908,
-    // height: 714,
-    // linux下尺寸
     width: 892,
     height: 676,
     resizable:false,
@@ -32,7 +28,7 @@ function createWindow () {
   //窗口是否总是显示在其他窗口之前
   mainWindow.setAlwaysOnTop(true);
 
-  mainWindow.openDevTools(true);
+  // mainWindow.openDevTools(true);
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -52,6 +48,11 @@ app.on('ready', function(){
   })
 })
 
+// 监听刷新事件
+ipcMain.on('reload-page', function () {
+    mainWindow.reload();
+});
+
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
   app.quit();
@@ -60,6 +61,6 @@ app.on('window-all-closed', function () {
 
 app.on('activate', function () {
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
 })
