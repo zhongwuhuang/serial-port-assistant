@@ -26,7 +26,7 @@ function createWindow () {
   mainWindow.loadURL('file://' + __dirname + '/app/index.html')
 
   //窗口是否总是显示在其他窗口之前
-  mainWindow.setAlwaysOnTop(true);
+  // mainWindow.setAlwaysOnTop(true);
 
   // mainWindow.openDevTools(true);
 
@@ -46,11 +46,29 @@ app.on('ready', function(){
   globalShortcut.register('f4', function() {
     mainWindow.webContents.toggleDevTools();
   })
+  //app是否置顶显示
+  // globalShortcut.register('f1', function() {
+  //   if(mainWindow.isAlwaysOnTop()){
+  //     mainWindow.setAlwaysOnTop(false);
+  //   }else if(!mainWindow.isAlwaysOnTop()){
+  //     mainWindow.setAlwaysOnTop(true);
+  //   }
+  // })
 })
+
+// 打开窗口置顶
+ipcMain.on('open-top', function () {
+    mainWindow.setAlwaysOnTop(true);
+});
+
+// 关闭窗口置顶
+ipcMain.on('close-top', function () {
+    mainWindow.setAlwaysOnTop(false);
+});
 
 // 监听刷新事件
 ipcMain.on('reload-page', function () {
-    mainWindow.reload();
+    mainWindow.webContents.reload();
 });
 
 // Quit when all windows are closed.

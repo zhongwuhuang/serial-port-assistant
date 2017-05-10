@@ -1,4 +1,4 @@
-*{margin: 0;padding: 0;font-family:PingFangHK-Regular;font-size:14px;color:#2b2b2b;}
+*{margin: 0;padding: 0;font-family:PingFangHK-Regular;font-size:14px;color:#2b2b2b;user-select:none;}
 /*清楚浮动*/
 .clearfix:after{content: "";height: 0;line-height: 0;display: block;visibility: hidden;clear: both;}
 /*.drag{width: 908px;height: 30px;background: #bad2ea;position: absolute;-webkit-app-region: drag;border-radius: 10px;}*/
@@ -7,6 +7,9 @@ button,select{cursor: pointer;}
 input[disabled],.setting .dataselect[disabled],button[disabled]{color: graytext;cursor: default;}/*设置不可用样式*/
 
 .wrap{box-sizing: border-box;height: 676px;width: 892px;padding: 18px 14px;background:#F8F8F8;}
+
+#position1,#position2{width: 20px;height: 20px;position: absolute;right: 0px;top: 0px;border-radius: 15px;cursor: pointer;}
+#position2{width: 20px;height: 20px;display: none;}
 
 .setting{height: 34px;margin-left: 7px;}
 .setting>span:not(:last-child){margin-right: 15px;}
@@ -47,14 +50,12 @@ input[disabled],.setting .dataselect[disabled],button[disabled]{color: graytext;
 .show .show-window .assistant .receive{box-sizing: border-box;width: 830px;height: 196px;}
 .show .show-window .assistant .receive .receiveIpu{box-sizing: border-box;width: 700px;height: 206px;float: left;}
 /*.show .show-window .assistant .receive .receiveIpu span{background: #ebebe4;display: inline-block;text-align:justify;overflow:auto;color: #29A729;border-radius: 4px;padding: 4px 6px 6px 6px;box-sizing: border-box;width: 700px;height: 180px;margin-top: 6px;border:1px solid #a9a9a9;word-wrap:break-word;}*/
-.show .show-window .assistant .receive .receiveIpu textarea{resize: none;text-align:justify;overflow:auto;color: #29A729;border-radius: 4px;padding: 4px 6px 6px 6px;box-sizing: border-box;width: 700px;height: 170px;margin-top: 6px;border:1px solid #a9a9a9;word-wrap:break-word;}
+.show .show-window .assistant .receive .receiveIpu textarea{user-select:text;resize: none;text-align:justify;overflow:auto;color: #29A729;border-radius: 4px;padding: 4px 6px 6px 6px;box-sizing: border-box;width: 700px;height: 170px;margin-top: 6px;border:1px solid #a9a9a9;word-wrap:break-word;}
 #curtextReceive{position: relative;top: -180px;}
 .show .show-window .assistant .receive .ceceiveSet{box-sizing: border-box;width: 106px;height: 120px;float: right;margin-top: 54px;}
 .show .show-window .assistant label{vertical-align:middle;padding-left: 5px;}
 #showHex,#showTime,#sendHex{display: inline-block;width:16px;height: 16px;vertical-align:middle;}
-/*.chkBg{margin-bottom: 6px;background-color: #666;}*/
 .chkBg{margin-bottom: 6px;}
-.chkBg label{color: graytext;}
 #pauseReceive,#clearReceive,#startReceive,#clearSend,#send,#introSend{box-sizing: border-box;width: 104px;height: 34px;outline: none;height:32px;border-radius:4px;}
 .ceceiveSet{position: relative;}
 #startReceive{position: absolute;top: 50px;visibility: hidden;}
@@ -62,7 +63,7 @@ input[disabled],.setting .dataselect[disabled],button[disabled]{color: graytext;
 .show .show-window .assistant .line{box-sizing: border-box;width: 840px;height: 2px;border:1px solid #dadada;margin: 16px 0px 14px -6px;}
 .show .show-window .assistant .send {box-sizing: border-box;width: 830px;height: 126px;}
 .show .show-window .assistant .send .sendIpu {box-sizing: border-box;width: 700px;height: 126px;float: left;}
-.show .show-window .assistant .send .sendIpu textarea {color: #069;border-radius: 4px;padding: 5px;box-sizing: border-box;width: 700px;height: 100px;margin-top: 6px;}
+.show .show-window .assistant .send .sendIpu textarea {position: relative;user-select:text;color: #069;border-radius: 4px;padding: 5px;box-sizing: border-box;width: 700px;height: 100px;margin-top: 6px;}
 .show .show-window .assistant .send .sendSet {box-sizing: border-box;width: 106px;height: 95px;float: right;margin-top: 27px;}
 .show .show-window .assistant .intro {box-sizing: border-box;width: 830px;}
 .show .show-window .assistant .intro span {box-sizing: border-box;display: inline-block;text-align: center;}
@@ -84,14 +85,14 @@ input[disabled],.setting .dataselect[disabled],button[disabled]{color: graytext;
 .relay-setting button{box-sizing: border-box;width: 66px;height: 28px;outline: none;border-radius: 4px;margin-right: 10px;}
 #mac{margin-left: 5px;margin-right: 12px;}
 #calibration{margin-left: 9px;margin-right: 12px;}
-#serverip1{margin-left: 11px;}
+#serverip1{margin-left: 11px;margin-right: 12px;}
 #serverip2{margin-left: 73px;}
-#serverip3{margin-left: 73px;margin-right: 12px;}
+#serverip3{margin-left: 73px;}
 #port{margin-left: 38px;margin-right: 12px;}
-#nodeIp{width:88px; margin-left: 10px;}
-#nodeNum{width:186px;margin-left: 4px;margin-right: 12px;}
+#nodeIp{width:94px; margin-left: 23px;}
+#nodeNum{width:194px;margin-left: 4px;margin-right: 13px;}
 
 .show .show-window .relay .relay-show{box-sizing: border-box;width: 288px;height: 200px;float: right;}
-#devIdIpt{box-sizing: border-box;width: 288px;height: 222px;margin-top: 8px;outline: none;border-radius: 4px;resize: none;padding: 5px;}
+#devIdIpt{box-sizing: border-box;width: 288px;height: 222px;margin-top: 8px;outline: none;border-radius: 4px;resize: none;padding: 5px;background: #fff;}
 .show .show-window .relay .relay-show button{box-sizing: border-box;width: 105px;height: 34px;outline: none;border-radius: 5px;margin-top: 10px;}
 .show .show-window .relay .relay-show div button:nth-child(1){margin-right: 30px;}

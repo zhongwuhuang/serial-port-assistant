@@ -6,9 +6,9 @@
   "scripts": {
     "start": "electron .",
     "install": "electron-rebuild",
-    "packageWin": "electron-packager ./ Assistant --platform=win32 --arch=all --icon=hosts.ico --out=./dist --asar --app-version=2.0.1",
-    "packageLinux": "electron-packager ./ Assistant --platform=linux --arch=x64 --out=./dist --asar --app-version=2.0.1",
-    "packageDarwin": "electron-packager ./ Assistant --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1"
+    "packageWin": "electron-packager ./ assistant --platform=win32 --arch=x64 --icon=hosts.ico --out=./dist --asar --app-version=2.0.1",
+    "packageLinux": "electron-packager ./ assistant --platform=linux --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1",
+    "packageDarwin": "electron-packager ./ assistant --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1"
   },
   "keywords": [
     "Electron",

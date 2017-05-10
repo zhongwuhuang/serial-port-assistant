@@ -1,3 +1,5 @@
+# npm rebuild --runtime=electron --target=1.4.15 --disturl=https://atom.io/download/atom-shell --build-from-source
+
 # electron-serialport
 An example of how to use serialport in an electron app
 
@@ -21,14 +23,18 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+git clone http://gitlab.eco-iot.com:10080/eco-iot/serial-port-assistant.git
 # Go into the repository
-cd electron-quick-start
+cd serial-port-assistant
 # Install dependencies
 npm install
 # Run the app
 npm start
+
+# package
+npm run-script package---
 ```
+
 
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/).
 

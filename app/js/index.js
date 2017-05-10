@@ -9,15 +9,27 @@ var assistant = require('./js/assistant');
 // 配置需要的全局变量
 var Payload = '';
 var setValue = '';
-var commanSwt = false;
 var devIdSwt = false;
 var loopTimeSwt = false;
+var function1Swt = false;
+var function2Swt = false;
+var function3Swt = false;
+var function4Swt = false;
+var function5Swt = false;
+var function6Swt = false;
+// 可配置区域变量
+var cmd = '';
+var msgsrc = '';
+var payload = '';
+var commanSwt = false;
 var macSwt = false;
 var calibrationSwt = false;
 var serveripSwt = false;
 var portSwt = false;
 var nodeIpNumSwt = false;
-
+var devIdTxtSwt = false;
+var clearIdSwt = false;
+var getIdSwt = false;
 
 // 定时器
 var timer = null;//定时器
@@ -34,26 +46,31 @@ serialport.list(function (err, ports) {
   var html = oPortName.innerHTML;
   ports.forEach(function(port) {
     html += '<option>'+port.comName+'</option>';
-    // console.log(port.comName);
-    // console.log(port.pnpId);
-    // console.log(port.manufacturer);
   });
   oPortName.innerHTML = html;
 });
 /*****************************************遍历端口**************************************************/
 
 /*****************************************初始化**************************************************/
-var port = null;
 var portnameTxt = oPortName.options[portnameIndex].text;
 var baudrateTxt = oBaudrate.options[baudrateIndex].text;
 var databitsTxt = oDatabits.options[databitsIndex].text;
 var stopbitsTxt = oStopbits.options[stopbitsIndex].text;
 var parityTxt = oParity.options[parityIndex].text;
 
-//点击端口刷新页面
+var port = new serialport(portnameTxt, {
+  autoOpen: false,//是否自动打开,默认true
+  baudRate: parseInt(baudrateTxt),
+  dataBits: parseInt(databitsTxt),
+  stopBits: parseInt(stopbitsTxt),
+  parity: parityTxt.toLowerCase()
+});
+
+//双击端口刷新页面
 oReload.addEventListener('dblclick', function(){
   ipcRenderer.send('reload-page');
 });
+
 oPortName.addEventListener('change',function(){
   portnameTxt = this.value;
 });
@@ -69,8 +86,6 @@ oStopbits.addEventListener('change',function(){
 oParity.addEventListener('change',function(){
   parityTxt = this.value;
 });
-
-
 /*****************************************初始化**************************************************/
 
 /*****************************************打开串口事件**************************************************/
@@ -89,7 +104,11 @@ control.commonSet();
 /*****************************************信息发送部分**************************************************/
 // 点击发送
 oSend.addEventListener('click',function(){
-  assistant.sendInfo();
+  if(port.isOpen()===true){
+    assistant.sendInfo();
+  }else if(port.isOpen()===false){
+    return false;
+  }
 });
 // 全局发送快捷键
 document.onkeydown = function(ev){
@@ -105,9 +124,20 @@ document.onkeydown = function(ev){
 assistant.dataReceive();
 /*****************************************数据接收部分**************************************************/
 
-/*****************************************协议发送部分**************************************************/
-assistant.protocolSend();
-/*****************************************协议发送部分**************************************************/
+/*****************************************窗口置顶**************************************************/
+oPosition1.onclick = function(){
+  oPosition1.style.display = 'none';
+  oPosition2.style.display = 'block';
+  ipcRenderer.send('open-top');
+}
+oPosition2.onclick = function(){
+  oPosition1.style.display = 'block';
+  oPosition2.style.display = 'none';
+  ipcRenderer.send('close-top');
+}
+/*****************************************窗口置顶**************************************************/
+
+
 
 // // 十六进制发送
 // oSendtext.onkeypress = function(ev){

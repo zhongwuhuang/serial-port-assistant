@@ -5,12 +5,15 @@
     <title>串口助手</title>
   </head>
   <link rel="stylesheet" href="./css/index.css" media="screen">
+  <link rel="stylesheet" href="./vender/sweetalert/sweetalert.css" media="screen">
   <style media="screen">
 
   </style>
   <body>
     <!-- <div class="drag"></div> -->
     <div class="wrap">
+      <img id="position1" src="img/top1.png" alt="" />
+      <img id="position2" src="img/top2.png" alt="" />
       <div class="setting">
         <span>
           <label alt="dianji" id="reload">端口&nbsp;</label>
@@ -72,16 +75,16 @@
             <div class="devIdsetting">
               <label for="devId">设&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID</label>
               <span class="alignment">
-                <input disabled id="devId" type="text" name="name" value="1050" placeholder="请输入Id">
-                <button disabled id="devIdSet" type="button" name="button">配置</button>
+                <input id="devId" type="text" name="name" value="1050" placeholder="请输入Id">
+                <button id="devIdSet" type="button" name="button">配置</button>
               </span>
               <span id="devIdSetIntro">未知</span>
             </div>
             <div class="loop-time-setting">
               <label for="loopTime">上报时间间隔</label>
               <span class="alignment">
-                <input disabled id="loopTime" type="text" name="name" placeholder="请输入时间">
-                <button disabled id="loopTimeSet" type="button" name="button">配置</button>
+                <input id="loopTime" type="text" name="name" placeholder="请输入时间">
+                <button id="loopTimeSet" type="button" name="button">配置</button>
               </span>
               <span id="loopTimeSetIntro">未知</span>
             </div>
@@ -93,12 +96,12 @@
               <button id="close" type="button" name="button">关闭助手</button>
             </div>
             <div class="functionArea">
-              <button type="button" name="button">功能一</button>
-              <button class="btn" type="button" name="button">功能二</button>
-              <button type="button" name="button">功能三</button>
-              <button type="button" name="button">功能四</button>
-              <button class="btn" type="button" name="button">功能五</button>
-              <button type="button" name="button">功能六</button>
+              <button id="function1" type="button">功能一</button>
+              <button id="function2" class="btn" type="button">功能二</button>
+              <button id="function3" type="button">功能三</button>
+              <button id="function4" type="button">功能四</button>
+              <button id="function5" class="btn" type="button">功能五</button>
+              <button id="function6" type="button">功能六</button>
             </div>
           </div>
         </fieldset>
@@ -108,15 +111,15 @@
         <div class="show-btn">
           <ul>
             <li id="portBtn" class="active">串口助手</li>
-            <li>中继</li>
+            <li>数据网关</li>
             <li>采集器</li>
             <li>配电室监测仪</li>
             <li>水泵房监测仪</li>
-            <li>教师综合监测仪</li>
+            <li>教室综合监测仪</li>
           </ul>
         </div>
         <div class="show-window">
-          <div style="visibility:visible;" id="portWin" class="fun-win">
+          <div  style="visibility:visible;" id="portWin" class="fun-win">
             <div class="assistant">
               <div class="receive">
                 <div class="receiveIpu">
@@ -126,14 +129,14 @@
                 </div>
                 <div class="ceceiveSet">
                   <div class="chkBg">
-                    <input id="showHex" disabled type="checkbox" name="name" value="" disabled="disabled"><label class="setColr" for="showHex">十六进制显示</label>
+                    <input id="showHex" type="checkbox" name="name" value=""><label class="setColr" for="showHex">十六进制显示</label>
                   </div>
                   <div class="chkBg">
-                    <input id="showTime" disabled type="checkbox" name="name" value="" disabled="disabled"><label class="setColr" for="showTime">显示接收时间</label>
+                    <input id="showTime" type="checkbox" name="name" value=""><label class="setColr" for="showTime">显示接收时间</label>
                   </div>
                   <span>
-                    <button id="pauseReceive" type="button" name="button" disabled="disabled">暂停接收</button>
-                    <button id="startReceive" type="button" name="button" disabled="disabled">开始接收</button>
+                    <button id="pauseReceive" type="button" name="button">暂停接收</button>
+                    <button id="startReceive" type="button" name="button">开始接收</button>
                   </span>
                   <button id="clearReceive" type="button" name="button">清空接收</button>
                 </div>
@@ -144,14 +147,14 @@
               <div class="send">
                 <div class="sendIpu">
                   <p>发送窗口</p>
-                  <textarea id="textSend" name="name" rows="8" cols="40" style="resize:none" disabled="disabled"></textarea>
+                  <textarea id="textSend" name="name" rows="8" cols="40" style="resize:none"></textarea>
                 </div>
                 <div class="sendSet">
                   <div class="chkBg">
-                    <input id="sendHex" disabled type="checkbox" name="name" value="" disabled="disabled"><label class="setColr" for="sendHex">十六进制发送</label>
+                    <input id="sendHex" type="checkbox" name="name" value=""><label class="setColr" for="sendHex">十六进制发送</label>
                   </div>
                   <button id="clearSend" type="button" name="button" >清空发送</button>
-                  <button id="send" type="button" name="button" disabled="disabled">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
+                  <button id="send" type="button" name="button">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
                 </div>
               </div>
 
@@ -160,18 +163,19 @@
               <div class="intro">
                 <span>
                   <label for="">命&nbsp;&nbsp;&nbsp;令</label>
-                  <input disabled id="cmd" type="text" name="name" value="01">
+                  <input id="cmd" type="text" name="name" value="01">
                 </span>
                 <span>
                   <label for="">消&nbsp;&nbsp;&nbsp;息&nbsp;&nbsp;&nbsp;源</label>
-                  <input disabled id="msgsrc" type="text" name="name" value="03">
+                  <input id="msgsrc" type="text" name="name" value="03">
                 </span>
                 <span>
                   <label for="">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;据&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区</label>
-                  <input disabled id="payload" type="text" name="name" value="setserip=192.168.0.115;192.168.0.116;192.168.0.117;">
+                  <input id="payload" type="text" name="name" value="setserip=192.168.0.115;192.168.0.116;192.168.0.117;">
                 </span>
                 <span>
-                  <button id="introSend" disabled type="button" name="button">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
+                  <!-- <button id="introSend" disabled type="button" name="button">发&nbsp;&nbsp;&nbsp;&nbsp;送</button> -->
+                  <button id="introSend" type="button" name="button">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
                 </span>
               </div>
             </div>
@@ -182,43 +186,43 @@
                 <div class="">
                   <label>
                     <span>MAC地址:</span>
-                    <input disabled id="mac" type="text" name="name" value="74-D0-2B-BE-97-C6">
-                    <button disabled id="macSet" type="button" name="button">配置</button>
+                    <input id="mac" type="text" name="name" value="74-D0-2B-BE-97-C6">
+                    <button id="macSet" type="button" name="button">配置</button>
                     <span id="macSetIntro">未知</span>
                   </label>
                 </div>
                 <div class="">
                   <label>
                     <span>时间校准:</span>
-                    <input disabled id="calibration" type="text" name="name" value="">
-                    <button disabled id="calibrationSet" type="button" name="button">配置</button>
+                    <input id="calibration" type="text" name="name" value="">
+                    <button id="calibrationSet" type="button" name="button">配置</button>
                     <span id="calibrationSetIntro">未知</span>
                   </label>
                 </div>
                 <div class="">
                   <label>
                     <span>服务器IP:</span>
-                    <input disabled id="serverip1" type="text" name="name" value="192.168.0.115">
-                    <input disabled id="serverip2" type="text" name="name" value="192.168.0.116">
-                    <input disabled id="serverip3" type="text" name="name" value="192.168.0.117">
-                    <button disabled id="serveripSet" type="button" name="button">配置</button>
+                    <input id="serverip1" type="text" name="name" value="192.168.0.115">
+                    <button id="serveripSet" type="button" name="button">配置</button>
                     <span id="serveripSetIntro">未知</span>
+                    <input id="serverip2" type="text" name="name" value="192.168.0.116">
+                    <input id="serverip3" type="text" name="name" value="192.168.0.117">
                   </label>
                 </div>
                 <div class="">
                   <label>
                     <span>端口:</span>
-                    <input disabled id="port" type="text" name="name" value="8080">
-                    <button disabled id="portSet" type="button" name="button">配置</button>
+                    <input id="port" type="text" name="name" value="8080">
+                    <button id="portSet" type="button" name="button">配置</button>
                     <span id="portSetIntro">未知</span>
                   </label>
                 </div>
                 <div class="">
                   <label>
-                    <span>节点ID序号:</span>
-                    <input disabled id="nodeIp" type="text" name="name" value="">
-                    <input disabled id="nodeNum" type="text" name="name" value="">
-                    <button disabled id="nodeIpNumSet" type="button" name="button">配置</button>
+                    <span>节点ID:</span>
+                    <input id="nodeIp" type="text" name="name" value="">
+                    <input id="nodeNum" type="text" name="name" value="">
+                    <button id="nodeIpNumSet" type="button" name="button">配置</button>
                     <span id="nodeIpNumSetIntro">未知</span>
                   </label>
                 </div>
@@ -226,11 +230,11 @@
 
               <div class="relay-show">
                 <p>设备ID</p>
-                <textarea id="devIdIpt" name="name"></textarea>
+                <textarea id="devIdIpt"></textarea>
                 <div class="">
-                  <button type="button" name="button">清空设备ID</button>
-                  <button type="button" name="button">获取设备ID</button>
-                  <button type="button" name="button">清空显示</button>
+                  <button id="clearId" type="button">清空设备ID</button>
+                  <button id="getId" type="button">获取设备ID</button>
+                  <button id="clearIdTxt" type="button">清空显示</button>
                 </div>
               </div>
             </div>
@@ -248,7 +252,7 @@
             <img src="./img/timg.jpg" alt="" />
           </div>
           <div class="fun-win">
-            <h1>教师综合监测仪待开发~~~</h1>
+            <h1>教室综合监测仪待开发~~~</h1>
             <img src="./img/timg.jpg" alt="" />
           </div>
         </div>
@@ -256,6 +260,7 @@
     </div>
   </body>
 
+  <script type="text/javascript" src="./vender/sweetalert/sweetalert.min.js"></script>
   <script type="text/javascript" src="./js/dom.js"></script>
   <script type="text/javascript" src="./js/index.js"></script>
 </html>

@@ -13,19 +13,19 @@ function sendInfo(){
   // }
 
   if(oSendtext.value == ''){
-    alert('你没输入任何东西!');
+    swal({title:'你没输入任何东西!',timer: 2000});
     oSendtext.focus();
   }
   else if(oSendHex.checked){
     port.write(utils.string2Bin(utils.hexToString(sendText)), function(err) {
       if(err){
-        alert('err ' + err);
+        swal(err);
       }
     });
   }else{
     port.write(utils.string2Bin(sendText), function(err) {
       if(err){
-        alert('err ' + err);
+        swal(err);
       }
     });
   }
@@ -36,6 +36,7 @@ var strInner1 = '';
 var strInner2 = '';
 var strInner3 = '';
 var strInner4 = '';
+var strInner5 = '';
 
 function dataReceive(){
   oOpen.addEventListener('click',function(){
@@ -45,6 +46,172 @@ function dataReceive(){
 
       console.log(dataString.length+'---'+dataString);
       var findRs = dataString.toUpperCase().indexOf('set error'.toUpperCase());
+
+      // 设备id
+      if(findRs==-1&&setValue!=''&&devIdSwt){
+        var successTip = '<font style="color:#29a729">成功</font>';
+        oDevIdSetIntro.innerHTML = successTip;
+        devIdSwt = false;
+      }else if(findRs!=-1&&devIdSwt){
+        var failTip = '<font style="color:#e80b0b">失败</font>';
+        oDevIdSetIntro.innerHTML = failTip;
+        devIdSwt = false;
+      }
+
+      // 上报时间间隔
+      if(findRs==-1&&setValue!=''&&loopTimeSwt){
+        var successTip = '<font style="color:#29a729">成功</font>';
+        oLoopTimeSetIntro.innerHTML = successTip;
+        loopTimeSwt = false;
+      }else if(findRs!=-1&&loopTimeSwt){
+        var failTip = '<font style="color:#e80b0b">失败</font>';
+        oLoopTimeSetIntro.innerHTML = failTip;
+        loopTimeSwt = false;
+      }
+
+      // 通用功能配置
+      // function judge(obj,swt,text){
+      //   console.log(obj+':'+swt)
+      //   if(findRs==-1&&swt){
+      //     obj.style.backgroundColor = '#29a729';
+      //     obj.innerHTML = '成功';
+      //     setTimeout(function(){
+      //       obj.style.backgroundColor = '';
+      //       obj.innerHTML = text;
+      //     },1000);
+      //     swt = false;
+      //     console.log(obj+':'+swt)
+      //   }else if(findRs!=-1&&swt){
+      //     obj.style.backgroundColor = '#e80b0b';
+      //     obj.innerHTML = '失败';
+      //     setTimeout(function(){
+      //       obj.style.backgroundColor = '';
+      //       obj.innerHTML = text;
+      //     },1000);
+      //     swt = false;
+      //     console.log(obj+':'+swt)
+      //   }
+      // }
+      // judge(oFunction1,function1Swt,'功能一');
+      // judge(oFunction2,function2Swt,'功能二');
+      // judge(oFunction3,function3Swt,'功能三');
+      // judge(oFunction4,function4Swt,'功能四');
+      // judge(oFunction5,function5Swt,'功能五');
+      // judge(oFunction6,function6Swt,'功能六');
+
+      // 通用功能一
+      if(findRs==-1&&function1Swt){
+        oFunction1.style.backgroundColor = '#29a729';
+        oFunction1.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction1.style.backgroundColor = '';
+          oFunction1.innerHTML = '功能一';
+        },1000);
+        function1Swt = false;
+      }else if(findRs!=-1&&function1Swt){
+        oFunction1.style.backgroundColor = '#e80b0b';
+        oFunction1.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction1.style.backgroundColor = '';
+          oFunction1.innerHTML = '功能一';
+        },1000);
+        function1Swt = false;
+      }
+
+      // 通用功能二
+      if(findRs==-1&&function2Swt){
+        oFunction2.style.backgroundColor = '#29a729';
+        oFunction2.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction2.style.backgroundColor = '';
+          oFunction2.innerHTML = '功能二';
+        },1000);
+        function2Swt = false;
+      }else if(findRs!=-1&&function2Swt){
+        oFunction2.style.backgroundColor = '#e80b0b';
+        oFunction2.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction2.style.backgroundColor = '';
+          oFunction2.innerHTML = '功能二';
+        },1000);
+        function2Swt = false;
+      }
+
+      // 通用功能三
+      if(findRs==-1&&function3Swt){
+        oFunction3.style.backgroundColor = '#29a729';
+        oFunction3.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction3.style.backgroundColor = '';
+          oFunction3.innerHTML = '功能三';
+        },1000);
+        function3Swt = false;
+      }else if(findRs!=-1&&function3Swt){
+        oFunction3.style.backgroundColor = '#e80b0b';
+        oFunction3.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction3.style.backgroundColor = '';
+          oFunction3.innerHTML = '功能三';
+        },1000);
+        function3Swt = false;
+      }
+
+      // 通用功能四
+      if(findRs==-1&&function4Swt){
+        oFunction4.style.backgroundColor = '#29a729';
+        oFunction4.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction4.style.backgroundColor = '';
+          oFunction4.innerHTML = '功能四';
+        },1000);
+        function4Swt = false;
+      }else if(findRs!=-1&&function4Swt){
+        oFunction4.style.backgroundColor = '#e80b0b';
+        oFunction4.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction4.style.backgroundColor = '';
+          oFunction4.innerHTML = '功能四';
+        },1000);
+        function4Swt = false;
+      }
+
+      // 通用功能五
+      if(findRs==-1&&function5Swt){
+        oFunction5.style.backgroundColor = '#29a729';
+        oFunction5.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction5.style.backgroundColor = '';
+          oFunction5.innerHTML = '功能五';
+        },1000);
+        function5Swt = false;
+      }else if(findRs!=-1&&function5Swt){
+        oFunction5.style.backgroundColor = '#e80b0b';
+        oFunction5.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction5.style.backgroundColor = '';
+          oFunction5.innerHTML = '功能五';
+        },1000);
+        function5Swt = false;
+      }
+
+      // 通用功能六
+      if(findRs==-1&&function6Swt){
+        oFunction6.style.backgroundColor = '#29a729';
+        oFunction6.innerHTML = '成功';
+        setTimeout(function(){
+          oFunction6.style.backgroundColor = '';
+          oFunction6.innerHTML = '功能六';
+        },1000);
+        function6Swt = false;
+      }else if(findRs!=-1&&function6Swt){
+        oFunction6.style.backgroundColor = '#e80b0b';
+        oFunction6.innerHTML = '失败';
+        setTimeout(function(){
+          oFunction6.style.backgroundColor = '';
+          oFunction6.innerHTML = '功能六';
+        },1000);
+        function6Swt = false;
+      }
 
       // 通用发送部分
       if(findRs==-1&&commanSwt&&cmd!=''&&msgsrc!=''&&payload!=''){
@@ -65,26 +232,6 @@ function dataReceive(){
         commanSwt = false;
       }
 
-      // 设备id
-      if(findRs==-1&&setValue!=''&&devIdSwt){
-        var successTip = '<font style="color:#29a729">成功</font>';
-        oDevIdSetIntro.innerHTML = successTip;
-        devIdSwt = false;
-      }else if(findRs!=-1&&devIdSwt){
-        var failTip = '<font style="color:#e80b0b">失败</font>';
-        oDevIdSetIntro.innerHTML = failTip;
-        devIdSwt = false;
-      }
-      // 上报时间间隔
-      if(findRs==-1&&setValue!=''&&loopTimeSwt){
-        var successTip = '<font style="color:#29a729">成功</font>';
-        oLoopTimeSetIntro.innerHTML = successTip;
-        loopTimeSwt = false;
-      }else if(findRs!=-1&&loopTimeSwt){
-        var failTip = '<font style="color:#e80b0b">失败</font>';
-        oLoopTimeSetIntro.innerHTML = failTip;
-        loopTimeSwt = false;
-      }
       // mac配置
       if(findRs==-1&&setValue!=''&&macSwt){
         var successTip = '<font style="color:#29a729">成功</font>';
@@ -95,6 +242,7 @@ function dataReceive(){
         oMacSetIntro.innerHTML = failTip;
         macSwt = false;
       }
+
       // 时间校准
       if(findRs==-1&&setValue!=''&&calibrationSwt){
         var successTip = '<font style="color:#29a729">成功</font>';
@@ -105,6 +253,7 @@ function dataReceive(){
         oCalibrationSetIntro.innerHTML = failTip;
         calibrationSwt = false;
       }
+
       // 服务器ip
       if(findRs==-1&&serveripSwt){
         var successTip = '<font style="color:#29a729">成功</font>';
@@ -115,6 +264,7 @@ function dataReceive(){
         oServeripSetIntro.innerHTML = failTip;
         serveripSwt = false;
       }
+
       // 端口
       if(findRs==-1&&setValue!=''&&portSwt){
         var successTip = '<font style="color:#29a729">成功</font>';
@@ -125,6 +275,7 @@ function dataReceive(){
         oPortSetIntro.innerHTML = failTip;
         portSwt = false;
       }
+
       // 节点ID序号
       if(findRs==-1&&setValue!=''&&nodeIpNumSwt){
         var successTip = '<font style="color:#29a729">成功</font>';
@@ -135,7 +286,6 @@ function dataReceive(){
         oNodeIpNumSetIntro.innerHTML = failTip;
         nodeIpNumSwt = false;
       }
-
 
       var date = new Date();
       var curRecieveTime = utils.toTwo(date.getHours())+':'+utils.toTwo(date.getMinutes())+':'+utils.toTwo(date.getSeconds());
@@ -181,13 +331,24 @@ function dataReceive(){
         }
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
 
-      }else{
+      }else if(devIdTxtSwt){//显示设备Id与清除设备设备Id
 
         strReceive = dataString;
         strInner4 += strReceive;
         if(dataString.length<32){
-          oReceivetext.innerHTML += '\n'+strInner4;
+          oDevIdIpt.innerHTML += '\n'+strInner4;
           strInner4 = '';
+        }
+        oDevIdIpt.scrollTop = oDevIdIpt.scrollHeight;
+        devIdTxtSwt = false;
+
+      }else{
+
+        strReceive = dataString;
+        strInner5 += strReceive;
+        if(dataString.length<32){
+          oReceivetext.innerHTML += '\n'+strInner5;
+          strInner5 = '';
         }
         // oReceivetext.innerHTML += strReceive;
         oReceivetext.scrollTop = oReceivetext.scrollHeight;
@@ -197,36 +358,7 @@ function dataReceive(){
   })
 }
 
-// 协议发送
-var cmd = '';
-var msgsrc = '';
-var payload = '';
-function protocolSend(){
-  oIntroSend.addEventListener('click',function(){
-    commanSwt = true;
-    cmd = oCmd.value;
-    msgsrc = oMsgsrc.value;
-    payload = oPayload.value;
-    var len = payload.length;
-    // 未加crc16前的十六进制
-    if(len){
-      var dataHex = '555500'+utils.tenToHex(len+4)+cmd+msgsrc+utils.stringToHex(payload);
-      var arrUnicode = utils.string2Bin(utils.hexToString(dataHex));
-      // 求出crc16
-      var crc16 = utils.calcCRC16(arrUnicode,4,len+2);
-      var sendCmd = utils.hexToString(dataHex+crc16);
-
-      port.write(utils.string2Bin(sendCmd), function(err) {
-        if(err){
-          alert('err ' + err);
-        }
-      });
-    }
-  });
-}
-
 
 
 exports.dataReceive = dataReceive;
 exports.sendInfo = sendInfo;
-exports.protocolSend = protocolSend;

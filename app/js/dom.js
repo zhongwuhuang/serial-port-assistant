@@ -1,3 +1,6 @@
+var oPosition1 =  document.getElementById('position1');
+var oPosition2 =  document.getElementById('position2');
+
 // 下拉选择
 var oPortName =  document.getElementById('portname');
 var portnameIndex = oPortName.selectedIndex;
@@ -19,6 +22,12 @@ var oDevIdSetIntro =  document.querySelector('#devIdSetIntro');
 var oLoopTime =  document.querySelector('#loopTime');
 var oLoopTimeSet =  document.querySelector('#loopTimeSet');
 var oLoopTimeSetIntro =  document.querySelector('#loopTimeSetIntro');
+var oFunction1 = document.querySelector('#function1');
+var oFunction2 = document.querySelector('#function2');
+var oFunction3 = document.querySelector('#function3');
+var oFunction4 = document.querySelector('#function4');
+var oFunction5 = document.querySelector('#function5');
+var oFunction6 = document.querySelector('#function6');
 
 var oOpen =  document.querySelector('#open');
 var oClose =  document.querySelector('#close');
@@ -50,6 +59,11 @@ var oMsgsrc = document.querySelector('#msgsrc');
 var oPayload = document.querySelector('#payload');
 var oIntroSend = document.querySelector('#introSend');
 
+// 功能窗口区域
+var oShowBtn = document.querySelectorAll('.show-btn')[0];
+var aLi = oShowBtn.getElementsByTagName('li');
+var aFunwin = document.querySelectorAll('.fun-win');
+
 //中继
 var oMac = document.querySelector('#mac');
 var oMacSet = document.querySelector('#macSet');
@@ -70,11 +84,10 @@ var oNodeNum = document.querySelector('#nodeNum');
 var oNodeIpNumSet = document.querySelector('#nodeIpNumSet');
 var oNodeIpNumSetIntro = document.querySelector('#nodeIpNumSetIntro');
 
-
-// 功能窗口区域
-var oShowBtn = document.querySelectorAll('.show-btn')[0];
-var aLi = oShowBtn.getElementsByTagName('li');
-var aFunwin = document.querySelectorAll('.fun-win');
+var oDevIdIpt = document.querySelector('#devIdIpt');
+var oClearId = document.querySelector('#clearId');
+var oGetId = document.querySelector('#getId');
+var oClearIdTxt = document.querySelector('#clearIdTxt');
 
 for(var i=0;i<aLi.length;i++){
   aLi[i].index = i;
@@ -99,6 +112,7 @@ oPauseReceive.onclick = function(){
   oReceivetext.style.visibility = 'hidden';
   oCurtextReceive.style.visibility = 'visible';
   oCurtextReceive.scrollTop = oCurtextReceive.scrollHeight;
+  oReceivetext.style.backgroundColor = '#ebebe4';
   // clearInterval(timer);
 }
 // 开始数据接收
@@ -109,6 +123,7 @@ oStartReceive.onclick = function(){
   oReceivetext.innerHTML = curText;
   oReceivetext.style.visibility = 'visible';
   oCurtextReceive.style.visibility = 'hidden';
+  oReceivetext.style.backgroundColor = '#fff';
   // interval();
 }
 
@@ -121,6 +136,11 @@ oClearReceive.onclick = function(){
 //清除发送区域
 oClearSend.onclick = function(){
   oSendtext.value = '';
+}
+//清除设备Id显示
+oClearIdTxt.onclick = function(){
+  oDevIdIpt.innerHTML = '';
+  // oDevIdIpt.value = '';
 }
 
 // 十六进制发送
@@ -205,6 +225,14 @@ oCalibration.onkeypress = function(ev){
 // oDevId.onmouseup = function(){
 //   holdUp();
 // }
+
+
+oCalibration.ondblclick = function(){
+  var date = new Date();
+  var curRecieveTime = date.getTime();
+  var second = parseInt(curRecieveTime/1000);
+  oCalibration.value = second;
+}
 
 // 单击右键清除
 function rightClickClear(obj){
