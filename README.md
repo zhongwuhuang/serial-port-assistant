@@ -23,7 +23,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone http://gitlab.eco-iot.com:10080/eco-iot/serial-port-assistant.git
+git clone https://github.com/zhongwuhuang/serial-port-assistant.git
 # Go into the repository
 cd serial-port-assistant
 # Install dependencies
